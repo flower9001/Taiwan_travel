@@ -1,0 +1,390 @@
+@import "variable";
+@import "mixin";
+li {
+    list-style: none;
+}
+
+header.container {
+    margin-top: 32px;
+    @include pad {
+        margin-top: 16px;
+    }
+}
+
+.header {
+    background: #fff;
+    margin-left: 104px;
+    margin-right: 64px;
+    @include pad {
+        margin-left: 40px;
+        margin-right: 16px;
+        margin-bottom: 40px;
+    }
+    @include mobile {
+        margin-top: 16px;
+        margin-left: 16px;
+        margin-bottom: 12px;
+    }
+    .shadow-left {
+        left: 4px;
+        bottom: -4px;
+    }
+    .shadow-right {
+        right: 4px;
+        bottom: -4px;
+    }
+}
+
+* {
+    font-family: 'Noto Sans TC';
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.container {    
+    @include container
+}
+
+@while $num <= 15 {
+    @each $side, $value in $sides {
+        .m {
+            &#{$side} {
+                
+                @include pad {
+                    &-md {
+                        &-#{$num} {
+                            margin-#{$value}: $num * $spacing !important
+                        }
+                    }
+                }
+                @include mobile {
+                    &-sm {
+                        &-#{$num} {
+                            margin-#{$value}: $num * $spacing !important
+                        }
+                    }
+                }
+                &-#{$num} {
+                    margin-#{$value}: $num * $spacing !important
+                }
+            }
+        }
+        .p {
+            &#{$side} {
+                &-#{$num} {
+                    padding-#{$value}: $num * $spacing !important
+                }            
+                @include pad {
+                    &-md {
+                        &-#{$num} {
+                            padding-#{$value}: $num * $spacing !important
+                        }
+                    }
+                }
+                @include mobile {
+                    &-sm {
+                        &-#{$num} {
+                            padding-#{$value}: $num * $spacing !important
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .h {
+        &-#{$num} {
+            height: $num * $spacing;
+        }
+    }
+    .w {
+        &-#{$num} {
+            width: $num * $spacing;
+        }
+    }
+    $num: $num+1;
+}
+
+nav {
+    ul {
+        display: flex;
+        justify-content: end;
+        margin-top: 24px;
+        padding-left: 0;
+        @include mobile {
+            justify-content: space-around;
+            margin: 12px 0px;
+            padding: 8px 31px;            
+            box-shadow: 0px 4px 3px rgba(13, 11, 12, 0.2);
+            border-radius: 6px;
+            li {
+                margin-right: 0;
+            }
+        }
+    }    
+}
+
+.logo {
+    @include pad {
+        width: 86px;        
+    }
+    @include mobile {
+        width: 90px;
+    }
+}
+
+@each $color,
+$value in $theme-colors {
+    .text-#{$color} {
+        color: $value;
+    }
+    .bg-#{$color} {
+        background-color: $value;
+    }
+}
+
+.shadow {
+    position: absolute;
+    width: 50%;
+    height: 32px;
+    background: #0D0B0C;
+    opacity: 0.3;
+    filter: blur(5px);
+    z-index: -2;
+    &-left {
+        transform: skew(0deg, -5deg);
+    }
+    &-right {
+        transform: skew(0deg, 5deg);
+    }
+}
+
+.search-area {
+    background: url('@/assets/images/cover.png') no-repeat center;
+    height: 536px;
+    border: 24px solid $white;
+    @include pad {
+        background: $white;
+        height: auto;
+        border: none;
+    }
+    @include mobile {
+        padding-bottom: 20px;
+    }
+    .shadow-left {
+        left: -23px;
+        bottom: -24px;
+        @include mobile {
+            left: 16px;
+            bottom: 0;
+        }
+    }
+    .shadow-right {
+        right: -23px;
+        bottom: -24px;
+        @include mobile {
+            right: 16px;
+            bottom: 0;
+        }
+    }
+}
+
+.search-content {
+    width: 486px;
+    margin: 0 auto;
+    @include pad {
+        width: 60%;
+    }
+    @include mobile {
+        width: 95%;
+        margin-right: 12px;
+        margin-left: 12px;
+    }
+}
+
+.search {
+    height: 40px;
+    padding-left: 24px;
+    border: none;
+    border-radius: 6px;
+    outline: 0 none;
+    box-shadow: 0px 4px 3px rgba(13, 11, 12, 0.2);
+}
+
+.select {
+    height: 40px;
+    padding-left: 16px;
+    border: none;
+    border-radius: 6px;
+    box-shadow: 0px 4px 3px rgba(13, 11, 12, 0.2);
+    /* 移除點擊時的外框 */
+    outline: 0 none;
+    /* 移除原有箭頭 */
+    appearance:none;
+    -moz-appearance:none;
+    -webkit-appearance:none;
+    /* 選擇箭頭樣式 */
+    background: url("@/assets/images/arrow_down.png") no-repeat 92% center;
+    background-color: #fff;
+}
+
+.fn-en {
+    font-family: 'Roboto';
+}
+
+.titleCircle {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border: 7px solid $pink;
+    border-radius: 50%;
+    margin-left: 4px;
+    margin-right: 2px;
+}
+
+.titleSquare {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border: 7px solid $pink;
+    margin-left: 4px;
+    margin-right: 16px;
+}
+
+.h1 {
+    font-size: 54px;
+    font-weight: 700;
+    font-family: 'Roboto';
+    span {
+        font-size: 54px;
+        font-weight: 700;
+        font-family: 'Roboto';
+    }
+}
+
+.h2 {
+    font-size: 20px;
+}
+
+.h3 {
+    font-size: 16px;
+}
+
+.h4 {
+    font-size: 14px;
+}
+
+.h5 {
+    font-size: 12px;
+    font-weight: 300;
+}
+
+.btn-pink {
+    color: $white;
+    background-color: $pink;
+    border-color: $pink;
+    :hover {
+        background-color: rgb(150, 80, 135);
+    }
+    :focus {
+        background-color: rgb(150, 80, 135);
+        box-shadow: 0;
+    }
+}
+
+footer {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Roboto';
+    font-size: 12px;
+    font-weight: 400;
+    color: $gray;
+    height: 65px;
+    @media (max-width:768px){
+        height: 32px;
+    }
+}
+
+@each $position, $value in $position-values {
+    .top {
+        &-#{$position} {
+            top: $value;
+        }
+    }
+    .bottom {
+        &-#{$position} {
+            bottom: $value;
+        }
+    }
+    .start {
+        &-#{$position} {
+            left: $value;
+        }
+    }
+    .end {
+        &-#{$position} {
+            right: $value;
+        }
+    }
+}
+
+.d {
+    &-block {
+        display: block !important;
+    }
+    &-none {
+        display: none !important;
+    }
+    &-flex {
+        display: flex !important;
+    }
+    @include pad {
+        &-md {
+            &-block {
+                display: block !important;
+            }
+            &-none {
+                display: none !important;
+            }
+            &-flex {
+                display: flex !important;
+            }
+        }
+    }
+    @include mobile {
+        &-sm {
+            &-block {
+                display: block !important;
+            }
+            &-none {
+                display: none !important;
+            }
+            &-flex {
+                display: flex !important;
+            }
+        }
+    }
+}
+
+// @each $display, $value in $displays {
+//     .d {
+//         &-#{$display} {
+//             display: $value !important;
+//         }
+//         @include pad {
+//             &-md {
+//                 &-#{$display} {
+//                     display: $value !important;
+//                 }
+//             }
+//         }
+//         @include mobile {
+//             &-sm {
+//                 &-#{$display} {
+//                     display: $value !important;
+//                 }
+//             }
+//         }
+//     }
+// }
